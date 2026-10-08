@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>रीति · Riti — Nepali rituals guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700&family=Noto+Serif+Devanagari:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="band" aria-hidden="true"></div>
+<header class="top">
+  <div class="bar">
+    <button class="brand" id="homeBtn" aria-label="Riti home">रीति</button>
+    <span class="spacer"></span>
+    <button class="swatch" id="paletteBtn" aria-label="रङ बदल्नुहोस्"></button>
+    <button class="pill" id="calBtn">पात्रो</button>
+    <button class="pill" id="fsDown" aria-label="Smaller text">अ−</button>
+    <button class="pill" id="fsUp" aria-label="Larger text">अ+</button>
+    <select class="pill" id="langSel" aria-label="भाषा / Language"><option value="ne">नेपाली</option><option value="hi">हिन्दी</option><option value="en">English</option></select>
+  </div>
+</header>
+<main id="app"></main>
+
+
+<!-- Scripts load in this order; later files use names defined in earlier ones. -->
+<script src="js/core/storage.js"></script>
+<script src="js/core/helpers.js"></script>
+<script src="js/data/vocabulary.js"></script>
+<script src="js/i18n/hi.js"></script>
+<script src="js/guides/shraddha.js"></script>
+<script src="js/guides/daily-puja.js"></script>
+<script src="js/guides/nwaran.js"></script>
+<script src="js/calendar/panchang-engine.js"></script>
+<script src="js/calendar/places-festivals.js"></script>
+<script src="js/calendar/bikram-sambat.js"></script>
+<script src="js/calendar/location-time.js"></script>
+<script src="js/calendar/today-card.js"></script>
+<script src="js/calendar/calendar-screen.js"></script>
+<script src="js/calendar/tithi-finder.js"></script>
+<script src="js/sait/sait-data.js"></script>
+<script src="js/sait/sait-card.js"></script>
+<script src="js/sait/sait-screen.js"></script>
+<script src="js/guides/name-finder.js"></script>
+<script src="js/guides/aarti-bhajan.js"></script>
+<script src="js/guides/vrata.js"></script>
+<script src="js/core/audio.js"></script>
+<script src="js/app/screens.js"></script>
+<script src="js/app/main.js"></script>
+</body>
+</html>
