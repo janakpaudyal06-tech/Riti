@@ -269,3 +269,50 @@ function deathTithiInfo() {
     <button class="btn primary" data-act="useDeathTithi" data-m="${p.month}" data-p="${p.paksha}" data-t="${tith}">${T('यो तिथि प्रयोग गर्नुहोस्', 'Use this tithi')}</button>
   </div>`;
 }
+
+// ---------- Aarti tab ----------
+
+function aartiScreen() {
+  return `<h1 class="pagetitle">${T('आरती', 'Aarti')}</h1>
+    ${AARTIS.map(a => `<button class="guide" data-aarti="${a.id}">
+      <span class="gicon">${a.icon}</span><span><b>${esc(TO(a))}</b><span class="sub">${esc(TO(a.deity))}</span></span></button>`).join('')}
+    <section class="card"><h3>${T('आरती कसरी गर्ने', 'How to do aarti')}</h3>
+      <ol class="rules">${AARTI_HOWTO.map(h => `<li>${esc(TO(h))}</li>`).join('')}</ol></section>`;
+}
+
+// Lyrics are Hindi/Braj: shown as written, with the same Roman and read-aloud tools.
+function lyricsBlock(text, cls) {
+  const shown = S.roman ? roman(text) : text;
+  return `<div class="lyrics ${cls || ''}" lang="${S.roman ? 'hi-Latn' : 'hi'}">${esc(shown).replace(/\n/g, '<br>')}</div>`;
+}
+
+function aartiView() {
+  const a = AARTIS.find(x => x.id === S.sub.aarti) || AARTIS[0];
+  const refrainFirst = a.refrain.split('\n')[0].replace(/[\s,।॥]+$/, '');
+  const full = [a.refrain, ...a.stanzas.flatMap(s => [s, refrainFirst])].join('\n');
+  return `${backBar(esc(TO(a)))}
+    <p class="intro">${esc(TO(a.deity))}</p>
+    <div class="mantra-tools">
+      <button class="pill small" data-act="roman">${S.roman ? 'देवनागरी' : 'Roman'}</button>
+      ${canSpeak() ? `<button class="pill small" data-speak="${esc(full)}">🔊 ${T('सुन्नुहोस्', 'Listen')}</button>` : ''}
+    </div>
+    <section class="card aarti">
+      ${lyricsBlock(a.refrain, 'refrain')}
+      ${a.stanzas.map(s => `${lyricsBlock(s)}${lyricsBlock(refrainFirst + ' …', 'echo')}`).join('')}
+    </section>
+    <section class="card"><h3>${TO(AARTI_CLOSING.title)}</h3>
+      ${mantraBlock(AARTI_CLOSING.mantra)}
+      <p class="meaning"><b>${T('अर्थ', 'Meaning')}:</b> ${esc(TO(AARTI_CLOSING.meaning))}</p></section>
+    <p class="note">${T('यी आरती धेरै घरमा गाइने प्रचलित पाठ हुन्; कतिपय परिवारमा केही पङ्क्ति अलि फरक गाइन्छन्।',
+      'These are the versions most commonly sung; some families sing a few lines differently.')}</p>
+    ${aartiNav(a)}`;
+}
+
+function aartiNav(a) {
+  const i = AARTIS.indexOf(a);
+  const prev = AARTIS[i - 1], next = AARTIS[i + 1];
+  return `<div class="stepnav">
+    <button class="btn" ${prev ? `data-aarti="${prev.id}"` : 'disabled'}>‹ ${prev ? esc(TO(prev)) : ''}</button>
+    <button class="btn" ${next ? `data-aarti="${next.id}"` : 'disabled'}>${next ? esc(TO(next)) : ''} ›</button>
+  </div>`;
+}

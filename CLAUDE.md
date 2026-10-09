@@ -7,7 +7,7 @@ Riti is a static web app: plain HTML, CSS and JavaScript, no framework, no bundl
 - `index.html` loads every file in `js/` with ordinary `<script>` tags. **Order matters**: later files use constants and functions declared in earlier ones (they share one global scope). When you add a file, add its `<script>` tag in the right place.
 - Do not convert files to ES modules (`import`/`export`) unless you convert all of them together; mixing breaks the shared globals.
 - `S` (in `js/core/storage.js`) is the app state. `save()` writes it to `localStorage`; every storage call is wrapped in try/catch and the app must still work when storage is empty.
-- `render()` in `js/app/main.js` redraws `#app` from state. There are three bottom tabs (`S.tab`: `home` = calendar, `pujas`, `shraddha`); a guide opened inside a tab is `S.view`. Click handling is delegated through `data-tab`, `data-go`, `data-sub`, `data-step`, `data-act` and similar attributes.
+- `render()` in `js/app/main.js` redraws `#app` from state. There are four bottom tabs (`S.tab`: `home` = calendar, `pujas`, `aarti`, `shraddha`); a guide opened inside a tab is `S.view`. Click handling is delegated through `data-tab`, `data-go`, `data-sub`, `data-step`, `data-act` and similar attributes.
 - A new puja = a content file in `js/guides/`, a screen function in `js/app/screens.js`, an entry in `pujasScreen()`, and the screen added to `VIEWS` in `main.js`.
 
 ## Languages

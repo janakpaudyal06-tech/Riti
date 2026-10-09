@@ -11,7 +11,9 @@ Each item is sized to be one piece of work (one branch / pull request).
 - [ ] Check computed festival dates against Nepal's official BS 2083 patro and add a per-year override list if any differ
 - [x] **Navaratri Puja** vidhi (Navadurga)
 - [ ] **Laxmi Puja** (Tihar) and **Satyanarayan Puja** under Pujas → Other pujas
-- [ ] **Aarti and bhajan** book, **Vrata**, **Nwaran** and **Shubha sait** (from the earlier version; the code wasn't in the repo when the app was rebuilt)
+- [x] **Aarti** tab (6 aartis)
+- [ ] More aartis (Saraswati, Satyanarayan, Krishna – Aarti Kunj Bihari Ki) and a **bhajan** book
+- [ ] **Vrata**, **Nwaran** and **Shubha sait** (from the earlier version; the code wasn't in the repo when the app was rebuilt)
 
 ## Ideas
 - [ ] Shraddha reminders (calendar file / .ics download for each ancestor's tithi)

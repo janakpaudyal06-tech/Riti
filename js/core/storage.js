@@ -8,7 +8,7 @@ const DEFAULT_STATE = {
   palette: 0,
   roman: false,        // show mantras in Roman letters
   city: 'kathmandu',
-  tab: 'home',         // home | pujas | shraddha
+  tab: 'home',         // home | pujas | aarti | shraddha
   view: null,          // open guide inside a tab, e.g. 'daily', 'navaratri'
   sub: {},             // sub-tab per guide
   step: {},            // current step per guide
