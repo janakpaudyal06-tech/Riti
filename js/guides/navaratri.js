@@ -60,9 +60,9 @@ const NAVA_STEPS = [
   },
   {
     title: { ne: 'नौ दिनको दैनिक पूजा', en: 'Daily puja for nine days', hi: 'नौ दिन की दैनिक पूजा' },
-    text: { ne: 'हरेक बिहान-बेलुका दियो बालेर पूजा गर्नुहोस् र जमरामा पानी छर्कनुहोस्। त्यस दिनकी नवदुर्गाको ध्यान मन्त्र पढ्नुहोस् ("नवदुर्गा" खण्ड हेर्नुहोस्)। सकिन्छ भने दुर्गा सप्तशती (चण्डी) पाठ गर्नुहोस् वा सुन्नुहोस्। धेरै परिवारले यी दिन मासु, मदिरा, प्याज-लसुन त्याग्छन्।',
-      en: 'Each morning and evening, light the lamp, do puja and sprinkle water on the jamara. Read the dhyana mantra of that day’s form of Durga (see the "Nine Durgas" tab). If you can, read or listen to the Durga Saptashati (Chandi). Many families avoid meat, alcohol, onion and garlic during these days.',
-      hi: 'हर सुबह-शाम दीप जलाकर पूजा करें और जमरा पर जल छिड़कें। उस दिन की नवदुर्गा का ध्यान मंत्र पढ़ें ("नवदुर्गा" टैब देखें)। हो सके तो दुर्गा सप्तशती का पाठ करें या सुनें। बहुत से परिवार इन दिनों मांस, मदिरा, प्याज-लहसुन त्यागते हैं।' }
+    text: { ne: 'हरेक बिहान-बेलुका दियो बालेर पूजा गर्नुहोस् र जमरामा पानी छर्कनुहोस्। त्यस दिनकी नवदुर्गाको ध्यान मन्त्र पढ्नुहोस् ("नवदुर्गा" खण्ड हेर्नुहोस्)। सकिन्छ भने दुर्गा सप्तशती (चण्डी) पाठ गर्नुहोस् वा सुन्नुहोस् ("चण्डी पाठ" खण्ड हेर्नुहोस्)। धेरै परिवारले यी दिन मासु, मदिरा, प्याज-लसुन त्याग्छन्।',
+      en: 'Each morning and evening, light the lamp, do puja and sprinkle water on the jamara. Read the dhyana mantra of that day’s form of Durga (see the "Nine Durgas" tab). If you can, read or listen to the Durga Saptashati (Chandi) — see the "Chandi Path" tab. Many families avoid meat, alcohol, onion and garlic during these days.',
+      hi: 'हर सुबह-शाम दीप जलाकर पूजा करें और जमरा पर जल छिड़कें। उस दिन की नवदुर्गा का ध्यान मंत्र पढ़ें ("नवदुर्गा" टैब देखें)। हो सके तो दुर्गा सप्तशती का पाठ करें या सुनें ("चंडी पाठ" टैब देखें)। बहुत से परिवार इन दिनों मांस, मदिरा, प्याज-लहसुन त्यागते हैं।' }
   },
   {
     title: { ne: 'सप्तमी: फूलपाती', en: 'Saptami: Phulpati', hi: 'सप्तमी: फूलपाती' },
@@ -120,3 +120,69 @@ const NAVADURGA = [
 ];
 
 const NAVADURGA_LIST_SHLOKA = 'प्रथमं शैलपुत्री च द्वितीयं ब्रह्मचारिणी।\nतृतीयं चन्द्रघण्टेति कूष्माण्डेति चतुर्थकम्॥\nपञ्चमं स्कन्दमातेति षष्ठं कात्यायनीति च।\nसप्तमं कालरात्रीति महागौरीति चाष्टमम्॥\nनवमं सिद्धिदात्री च नवदुर्गाः प्रकीर्तिताः।';
+
+// ---------- Chandi Path (Durga Saptashati) ----------
+// The Devi Mahatmya of the Markandeya Purana: 700 verses in 13 chapters.
+// The full text is not bundled; this gives the structure, order, reading plan
+// and the Saptashloki Durga (the seven-verse short form taken from the Saptashati).
+
+const CHANDI_CHARITRAS = [
+  { ne: 'प्रथम चरित्र — महाकाली', en: 'First episode — Mahakali', hi: 'प्रथम चरित्र — महाकाली',
+    chapters: [
+      { n: 1, ne: 'राजा सुरथ र समाधि वैश्य मेधा ऋषिकहाँ पुग्छन्; मधु-कैटभ वध', en: 'King Suratha and the merchant Samadhi meet the sage Medhas; slaying of Madhu and Kaitabha', hi: 'राजा सुरथ और समाधि वैश्य मेधा ऋषि के पास; मधु-कैटभ वध' }
+    ] },
+  { ne: 'मध्यम चरित्र — महालक्ष्मी', en: 'Middle episode — Mahalakshmi', hi: 'मध्यम चरित्र — महालक्ष्मी',
+    chapters: [
+      { n: 2, ne: 'देवीको प्राकट्य; महिषासुरको सेनाको नाश', en: 'The Goddess appears; Mahishasura’s army is destroyed', hi: 'देवी का प्राकट्य; महिषासुर की सेना का नाश' },
+      { n: 3, ne: 'महिषासुर वध', en: 'Slaying of Mahishasura', hi: 'महिषासुर वध' },
+      { n: 4, ne: 'इन्द्र आदि देवताको स्तुति (शक्रादि स्तुति)', en: 'Hymn of Indra and the gods (Shakradi stuti)', hi: 'इन्द्रादि देवताओं की स्तुति (शक्रादि स्तुति)' }
+    ] },
+  { ne: 'उत्तम चरित्र — महासरस्वती', en: 'Final episode — Mahasaraswati', hi: 'उत्तम चरित्र — महासरस्वती',
+    chapters: [
+      { n: 5, ne: 'देवताको स्तुति ("या देवी सर्वभूतेषु…"); शुम्भको दूत', en: 'The gods’ hymn ("Ya Devi sarvabhuteshu…"); Shumbha’s messenger', hi: 'देवताओं की स्तुति ("या देवी सर्वभूतेषु…"); शुम्भ का दूत' },
+      { n: 6, ne: 'धूम्रलोचन वध', en: 'Slaying of Dhumralochana', hi: 'धूम्रलोचन वध' },
+      { n: 7, ne: 'चण्ड-मुण्ड वध (चामुण्डा)', en: 'Slaying of Chanda and Munda (Chamunda)', hi: 'चंड-मुंड वध (चामुंडा)' },
+      { n: 8, ne: 'रक्तबीज वध', en: 'Slaying of Raktabija', hi: 'रक्तबीज वध' },
+      { n: 9, ne: 'निशुम्भ वध', en: 'Slaying of Nishumbha', hi: 'निशुंभ वध' },
+      { n: 10, ne: 'शुम्भ वध', en: 'Slaying of Shumbha', hi: 'शुंभ वध' },
+      { n: 11, ne: 'नारायणी स्तुति', en: 'Hymn to Narayani', hi: 'नारायणी स्तुति' },
+      { n: 12, ne: 'पाठको फल (फलश्रुति)', en: 'Fruits of the recitation (phalashruti)', hi: 'पाठ का फल (फलश्रुति)' },
+      { n: 13, ne: 'सुरथ र वैश्यलाई वरदान', en: 'Boons to Suratha and the merchant', hi: 'सुरथ और वैश्य को वरदान' }
+    ] }
+];
+
+// Traditional seven-day division (1, 2, 1, 4, 2, 1, 2 chapters).
+const CHANDI_SEVEN_DAYS = [[1], [2, 3], [4], [5, 6, 7, 8], [9, 10], [11], [12, 13]];
+
+const CHANDI_ORDER = [
+  { ne: 'नुहाएर, आचमन र सङ्कल्प गरी पुस्तकलाई रातो कपडामा राखेर पूजा गर्नुहोस्।', en: 'Bathe, do achaman and sankalpa, and worship the book placed on a red cloth.', hi: 'स्नान, आचमन और संकल्प करके लाल कपड़े पर रखी पुस्तक की पूजा करें।' },
+  { ne: 'देवी कवच, अर्गला स्तोत्र र कीलक पढ्नुहोस्।', en: 'Read the Devi Kavacham, Argala Stotram and Kilakam.', hi: 'देवी कवच, अर्गला स्तोत्र और कीलक पढ़ें।' },
+  { ne: 'गुरुबाट दीक्षा लिनुभएको छ भने नवार्ण मन्त्र जप गर्नुहोस्।', en: 'If you have received it from a guru, do japa of the Navarna mantra.', hi: 'यदि गुरु से दीक्षा ली है तो नवार्ण मंत्र का जप करें।' },
+  { ne: 'अध्याय पाठ गर्नुहोस् — पूरा १३ अध्याय, वा तलको क्रम अनुसार त्यस दिनका अध्याय।', en: 'Read the chapters — all 13, or that day’s chapters from the plan below.', hi: 'अध्याय पाठ करें — पूरे 13, या नीचे के क्रम से उस दिन के अध्याय।' },
+  { ne: 'अन्त्यमा देवी सूक्त पढी क्षमा प्रार्थना गर्नुहोस्।', en: 'Finish with the Devi Suktam and the prayer for forgiveness.', hi: 'अंत में देवी सूक्त पढ़कर क्षमा प्रार्थना करें।' }
+];
+
+const CHANDI_RULES = [
+  { ne: 'अध्यायको बीचमा नरोकिनुहोस्; रोकिनुपरे अध्यायको सुरुबाट फेरि पढ्नुहोस्।', en: 'Don’t stop in the middle of a chapter; if you must, start that chapter again.', hi: 'अध्याय के बीच में न रुकें; रुकना पड़े तो अध्याय फिर से आरंभ करें।' },
+  { ne: 'पुस्तक काखमा नराखी आसन वा स्ट्यान्डमा राख्नुहोस्।', en: 'Keep the book on a stand or cloth, not in your lap.', hi: 'पुस्तक गोद में नहीं, चौकी या आसन पर रखें।' },
+  { ne: 'स्पष्ट र नहतारिई उच्चारण गर्नुहोस्। संस्कृत पढ्न गाह्रो भए नेपाली अनुवाद पढ्न वा पाठ सुन्न पनि सकिन्छ।', en: 'Pronounce clearly and without hurrying. If Sanskrit is hard, reading a translation or listening to the path is also accepted.', hi: 'स्पष्ट और बिना जल्दबाज़ी के उच्चारण करें। संस्कृत कठिन हो तो अनुवाद पढ़ना या पाठ सुनना भी मान्य है।' },
+  { ne: 'पूरा पाठ गर्न नसके तलको सप्तश्लोकी दुर्गा पढ्नुहोस्।', en: 'If you can’t do the full path, recite the Saptashloki Durga below.', hi: 'पूरा पाठ न हो सके तो नीचे की सप्तश्लोकी दुर्गा पढ़ें।' }
+];
+
+// Saptashloki Durga: seven verses from the Saptashati (chapter in brackets).
+const SAPTASHLOKI = [
+  { ch: 1, mantra: 'ज्ञानिनामपि चेतांसि देवी भगवती हि सा।\nबलादाकृष्य मोहाय महामाया प्रयच्छति॥',
+    meaning: { ne: 'ती भगवती महामायाले ज्ञानीहरूको मनलाई पनि बलपूर्वक तानेर मोहमा पार्नुहुन्छ।', en: 'That Goddess, Mahamaya, forcibly draws even the minds of the wise into delusion.', hi: 'वे भगवती महामाया ज्ञानियों के चित्त को भी बलपूर्वक खींचकर मोह में डाल देती हैं।' } },
+  { ch: 4, mantra: 'दुर्गे स्मृता हरसि भीतिमशेषजन्तोः\nस्वस्थैः स्मृता मतिमतीव शुभां ददासि।\nदारिद्र्यदुःखभयहारिणि का त्वदन्या\nसर्वोपकारकरणाय सदार्द्रचित्ता॥',
+    meaning: { ne: 'हे दुर्गा, सम्झँदा तपाईं सबै प्राणीको डर हर्नुहुन्छ, र स्वस्थ मनले सम्झँदा अत्यन्त शुभ बुद्धि दिनुहुन्छ। दरिद्रता, दुःख र भय हर्ने, सबैको भलाइका लागि सधैं दयालु हृदय भएकी तपाईंबाहेक अरू को छ र?', en: 'O Durga, remembered, you take away the fear of every being; remembered by the untroubled, you give a most auspicious mind. Remover of poverty, sorrow and fear — who but you has a heart always tender to help all?', hi: 'हे दुर्गे, स्मरण करने पर आप सब प्राणियों का भय हर लेती हैं, और स्वस्थ चित्त से स्मरण करने पर अत्यंत शुभ बुद्धि देती हैं। दरिद्रता, दुःख और भय हरने वाली, सबके उपकार हेतु सदा दयार्द्र चित्त वाली आपके सिवा और कौन है?' } },
+  { ch: 11, mantra: 'सर्वमङ्गलमाङ्गल्ये शिवे सर्वार्थसाधिके।\nशरण्ये त्र्यम्बके गौरि नारायणि नमोऽस्तु ते॥',
+    meaning: { ne: 'सबै मङ्गलकी मङ्गल, कल्याणकारी, सबै इच्छा पूरा गर्ने, शरण दिने, तीन नेत्र भएकी गौरी नारायणी, तपाईंलाई नमस्कार।', en: 'O auspicious one, source of all good, fulfiller of every aim, refuge of all, three-eyed Gauri, Narayani — salutations to you.', hi: 'सब मंगलों की मंगल, कल्याणकारी, सब कामनाएँ पूर्ण करने वाली, शरणदात्री, त्रिनेत्री गौरी नारायणी, आपको नमस्कार।' } },
+  { ch: 11, mantra: 'शरणागतदीनार्तपरित्राणपरायणे।\nसर्वस्यार्तिहरे देवि नारायणि नमोऽस्तु ते॥',
+    meaning: { ne: 'शरणमा आएका दीन-दुःखीको रक्षामा सधैं तत्पर, सबैको पीडा हर्ने देवी नारायणी, तपाईंलाई नमस्कार।', en: 'Ever intent on rescuing the humble and distressed who seek refuge, remover of everyone’s pain — O Devi Narayani, salutations to you.', hi: 'शरणागत दीन-दुखियों की रक्षा में सदा तत्पर, सबकी पीड़ा हरने वाली देवी नारायणी, आपको नमस्कार।' } },
+  { ch: 11, mantra: 'सर्वस्वरूपे सर्वेशे सर्वशक्तिसमन्विते।\nभयेभ्यस्त्राहि नो देवि दुर्गे देवि नमोऽस्तु ते॥',
+    meaning: { ne: 'सबै रूप भएकी, सबैकी ईश्वरी, सबै शक्तियुक्त देवी, हामीलाई भयबाट जोगाउनुहोस्; हे दुर्गा देवी, नमस्कार।', en: 'You who are all forms, ruler of all, endowed with every power — protect us from fear, O Devi; O Durga Devi, salutations to you.', hi: 'सर्वस्वरूपा, सर्वेश्वरी, सर्वशक्तिमयी देवी, हमें भय से बचाइए; हे दुर्गा देवी, आपको नमस्कार।' } },
+  { ch: 11, mantra: 'रोगानशेषानपहंसि तुष्टा\nरुष्टा तु कामान् सकलानभीष्टान्।\nत्वामाश्रितानां न विपन्नराणां\nत्वामाश्रिता ह्याश्रयतां प्रयान्ति॥',
+    meaning: { ne: 'प्रसन्न हुँदा तपाईं सबै रोग नाश गर्नुहुन्छ, रिसाउँदा सबै इच्छित कुरा हरण गर्नुहुन्छ। तपाईंको शरणमा परेकालाई विपत्ति आउँदैन; बरु उनीहरू अरूको आश्रय बन्छन्।', en: 'Pleased, you destroy all diseases; angered, you take away every cherished desire. Those who take refuge in you meet no misfortune; they become a refuge for others.', hi: 'प्रसन्न होने पर आप सब रोग नष्ट करती हैं, रुष्ट होने पर सब मनचाही कामनाएँ हर लेती हैं। आपकी शरण में आए लोगों पर विपत्ति नहीं आती; वे दूसरों के आश्रय बन जाते हैं।' } },
+  { ch: 11, mantra: 'सर्वाबाधाप्रशमनं त्रैलोक्यस्याखिलेश्वरि।\nएवमेव त्वया कार्यमस्मद्वैरिविनाशनम्॥',
+    meaning: { ne: 'हे सम्पूर्ण जगत्‌की ईश्वरी, तीनै लोकका सबै बाधा शान्त पार्नुहोस् र यसरी नै हाम्रा शत्रुको नाश गर्नुहोस्।', en: 'O Queen of all, calm every affliction of the three worlds, and in the same way destroy our enemies.', hi: 'हे अखिलेश्वरी, तीनों लोकों की सब बाधाएँ शांत करें और इसी प्रकार हमारे शत्रुओं का नाश करें।' } }
+];

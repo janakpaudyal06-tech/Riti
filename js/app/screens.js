@@ -89,12 +89,13 @@ function navaratriScreen() {
   let body;
   if (sub === 'durga') body = navadurgaList();
   else if (sub === 'dates') body = navaDates();
+  else if (sub === 'chandi') body = chandiView();
   else if (sub === 'materials') body = checklist('nava', NAVA_MATERIALS);
   else body = stepView('nava', NAVA_STEPS);
   return `${backBar(T('नवरात्र पूजा', 'Navaratri Puja'))}
     <p class="intro">${T('बडा दशैंका नौ रात (नवरात्र) मा दुर्गाका नौ रूप — नवदुर्गा — को पूजा गरिन्छ। घटस्थापनामा जमरा र कलश राखिन्छ र विजया दशमीमा टीका-जमरा लगाइन्छ।',
       'During the nine nights (Navaratri) of Bada Dashain, the nine forms of Durga — the Navadurga — are worshipped. Jamara and the kalash are set up on Ghatasthapana, and tika and jamara are received on Vijaya Dashami.')}</p>
-    ${subTabs('nava', [['steps', T('विधि', 'Steps')], ['durga', T('नवदुर्गा', 'Nine Durgas')], ['dates', T('मिति', 'Dates')], ['materials', T('सामग्री', 'Materials')]])}
+    ${subTabs('nava', [['steps', T('विधि', 'Steps')], ['durga', T('नवदुर्गा', 'Nine Durgas')], ['chandi', T('चण्डी पाठ', 'Chandi Path')], ['dates', T('मिति', 'Dates')], ['materials', T('सामग्री', 'Materials')]])}
     ${body}`;
 }
 
@@ -110,6 +111,45 @@ function navadurgaList() {
       </button>
       ${open === j ? `<p>${esc(TO(g.about))}</p>${mantraBlock(g.mantra)}` : ''}
     </section>`).join('')}`;
+}
+
+// Day of Navaratri today (1-based), or 0 outside Navaratri.
+function navaratriDayToday() {
+  const [y, m, d] = todayHere();
+  const start = addDays(y, m, d, -9);
+  const hit = findLunarDates(...start, 10, (p, prev) => lunarMatch(p, 6, 1) && !(prev && lunarMatch(prev, 6, 1)))[0];
+  if (!hit) return 0;
+  const n = Math.round((Date.UTC(y, m - 1, d) - Date.UTC(hit[0], hit[1] - 1, hit[2])) / DAY_MS) + 1;
+  return n >= 1 && n <= 10 ? n : 0;
+}
+
+function chandiView() {
+  const today = navaratriDayToday();
+  const chapters = list => list.map(n => num(n)).join(', ');
+  return `<section class="card">
+    <h2>${T('दुर्गा सप्तशती (चण्डी पाठ)', 'Durga Saptashati (Chandi Path)')}</h2>
+    <p>${T('मार्कण्डेय पुराणको देवी माहात्म्य — ७०० श्लोक, १३ अध्याय, तीन चरित्रमा। नवरात्रमा यसको पाठ गर्नु सबैभन्दा ठूलो देवी उपासना मानिन्छ।',
+      'The Devi Mahatmya of the Markandeya Purana — 700 verses in 13 chapters, in three episodes. Reciting it during Navaratri is considered the foremost worship of the Goddess.')}</p>
+    <p class="note">${T('पूरा पाठका लागि छापिएको दुर्गा सप्तशती पुस्तक (जस्तै गीता प्रेस) प्रयोग गर्नुहोस्। यहाँ पाठको क्रम, अध्यायको सार र सप्तश्लोकी दुर्गा छन्।',
+      'For the full path, use a printed Durga Saptashati (for example the Gita Press edition). Here you have the order of the path, what each chapter tells, and the Saptashloki Durga.')}</p>
+  </section>
+  <section class="card"><h3>${T('पाठको क्रम', 'Order of the path')}</h3>
+    <ol class="rules">${CHANDI_ORDER.map(o => `<li>${esc(TO(o))}</li>`).join('')}</ol></section>
+  <section class="card"><h3>${T('सात दिनमा पाठ', 'Reading over seven days')}</h3>
+    <p class="sub">${T('एकै दिन पूरा पाठ गर्न नसके परम्परागत रूपमा यसरी सात दिनमा बाँडिन्छ। नवरात्रको पहिलो दिनदेखि सुरु गर्नुहोस्।',
+      'If you cannot read it all in one day, it is traditionally divided over seven days like this. Start on the first day of Navaratri.')}</p>
+    <ul class="upcoming">${CHANDI_SEVEN_DAYS.map((list, i) =>
+      `<li class="${today === i + 1 ? 'is-now' : ''}"><b>${T(`दिन ${num(i + 1)}`, `Day ${i + 1}`)}</b>${today === i + 1 ? ` <span class="fest">${T('आज', 'Today')}</span>` : ''}
+        <span class="sub">${T('अध्याय', list.length > 1 ? 'Chapters' : 'Chapter')} ${chapters(list)}</span></li>`).join('')}</ul></section>
+  <section class="card"><h3>${T('अध्याय र चरित्र', 'Chapters and episodes')}</h3>
+    ${CHANDI_CHARITRAS.map(c => `<h4>${esc(TO(c))}</h4><ul class="chapters">${c.chapters.map(ch =>
+      `<li><span class="daynum small">${num(ch.n)}</span><span>${esc(TO(ch))}</span></li>`).join('')}</ul>`).join('')}</section>
+  <section class="card"><h3>${T('नियम', 'Rules')}</h3><ul class="rules">${CHANDI_RULES.map(r => `<li>${esc(TO(r))}</li>`).join('')}</ul></section>
+  <section class="card"><h2>${T('सप्तश्लोकी दुर्गा', 'Saptashloki Durga')}</h2>
+    <p class="sub">${T('सप्तशतीबाटै लिइएका सात श्लोक — छोटो चण्डी पाठका रूपमा पढिन्छ।', 'Seven verses taken from the Saptashati itself — recited as a short Chandi path.')}</p>
+    ${SAPTASHLOKI.map((v, i) => `<div class="verse"><div class="kicker">${T('श्लोक', 'Verse')} ${num(i + 1)} · ${T('अध्याय', 'Chapter')} ${num(v.ch)}</div>
+      ${mantraBlock(v.mantra)}<p class="meaning"><b>${T('अर्थ', 'Meaning')}:</b> ${esc(TO(v.meaning))}</p></div>`).join('')}
+  </section>`;
 }
 
 function navaDates() {
