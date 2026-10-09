@@ -1,6 +1,8 @@
 // Aarti book. Texts follow the common Gita Press versions sung in Nepali and
 // North Indian homes; some families sing a few lines differently.
 // Lyrics stay in their original Hindi/Braj (Devanagari) in every language.
+// youtube: a chosen video to sing along with; without one, the button opens a
+// YouTube search for the aarti's title.
 
 const AARTI_HOWTO = [
   { ne: 'थालमा घ्यू वा कपूरको दियो, फूल, अक्षता र घण्टी राख्नुहोस्। पूजाको अन्त्यमा, नैवेद्यपछि आरती गरिन्छ।', en: 'Put a ghee or camphor lamp, flowers, rice and a bell on a plate. Aarti is done at the end of puja, after the food offering.', hi: 'थाली में घी या कपूर का दीपक, फूल, अक्षत और घंटी रखें। आरती पूजा के अंत में, नैवेद्य के बाद की जाती है।' },
@@ -25,7 +27,7 @@ const AARTIS = [
     ]
   },
   {
-    id: 'ganesh', icon: '🐘',
+    id: 'ganesh', icon: '🐘', youtube: 'https://www.youtube.com/watch?v=Yuex2EnsGiY',
     ne: 'जय गणेश जय गणेश देवा', en: 'Jai Ganesh Deva', hi: 'जय गणेश जय गणेश देवा',
     deity: { ne: 'गणेश — पूजाको सुरुमा वा चतुर्थीमा', en: 'Ganesh — at the start of puja or on Chaturthi', hi: 'गणेश — पूजा के आरंभ में या चतुर्थी को' },
     refrain: 'जय गणेश जय गणेश जय गणेश देवा।\nमाता जाकी पार्वती, पिता महादेवा॥',

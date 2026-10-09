@@ -209,3 +209,9 @@ h4 { margin: 1em 0 .3em; font-size: 1rem; }
 .lyrics.refrain { background: var(--mantra-bg); border-left: 4px solid var(--accent-2); border-radius: 10px; padding: 10px 14px; font-weight: 700; }
 .lyrics.echo { color: var(--accent); font-size: .95rem; margin-top: -6px; }
 .tabs button { min-width: 0; }
+
+.ytlink {
+  display: flex; gap: 12px; align-items: center; margin: 12px 0; padding: 12px 16px; min-height: 56px;
+  background: var(--card); border: 1px solid var(--line); border-radius: 14px; color: var(--ink); text-decoration: none; box-shadow: var(--shadow);
+}
+.yticon { width: 40px; height: 40px; flex: 0 0 auto; display: grid; place-items: center; border-radius: 10px; background: #e62117; color: #fff; font-size: 1.1rem; }

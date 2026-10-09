@@ -296,6 +296,7 @@ function aartiView() {
       <button class="pill small" data-act="roman">${S.roman ? 'देवनागरी' : 'Roman'}</button>
       ${canSpeak() ? `<button class="pill small" data-speak="${esc(full)}">🔊 ${T('सुन्नुहोस्', 'Listen')}</button>` : ''}
     </div>
+    ${aartiVideoLink(a)}
     <section class="card aarti">
       ${lyricsBlock(a.refrain, 'refrain')}
       ${a.stanzas.map(s => `${lyricsBlock(s)}${lyricsBlock(refrainFirst + ' …', 'echo')}`).join('')}
@@ -306,6 +307,16 @@ function aartiView() {
     <p class="note">${T('यी आरती धेरै घरमा गाइने प्रचलित पाठ हुन्; कतिपय परिवारमा केही पङ्क्ति अलि फरक गाइन्छन्।',
       'These are the versions most commonly sung; some families sing a few lines differently.')}</p>
     ${aartiNav(a)}`;
+}
+
+// Opens YouTube (the app on phones) rather than embedding, so nothing loads until tapped.
+function aartiVideoLink(a) {
+  const url = a.youtube || 'https://www.youtube.com/results?search_query=' + encodeURIComponent(a.hi + ' आरती');
+  return `<a class="ytlink" href="${esc(url)}" target="_blank" rel="noopener noreferrer">
+    <span class="yticon" aria-hidden="true">▶</span>
+    <span><b>${a.youtube ? T('YouTube मा हेर्नुहोस् र सँगै गाउनुहोस्', 'Watch on YouTube and sing along', 'YouTube पर देखें और साथ में गाएँ')
+      : T('YouTube मा खोज्नुहोस्', 'Search on YouTube', 'YouTube पर खोजें')}</b>
+    <span class="sub">${T('YouTube खुल्छ', 'Opens YouTube', 'YouTube खुलेगा')}</span></span></a>`;
 }
 
 function aartiNav(a) {
