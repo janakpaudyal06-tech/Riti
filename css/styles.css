@@ -181,6 +181,12 @@ h3 { font-size: 1.05rem; color: var(--accent); margin-top: 1em; }
 .durga > .mantra-tools { margin-bottom: 16px; }
 .daynum { width: 44px; height: 44px; flex: 0 0 auto; display: grid; place-items: center; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font-weight: 700; font-size: 1.15rem; }
 .durga.open { border-color: var(--accent-2); }
+h4 { margin: 1em 0 .3em; font-size: 1rem; }
+.chapters { list-style: none; padding: 0; margin: 0; }
+.chapters li { display: flex; gap: 10px; align-items: flex-start; padding: 5px 0; }
+.daynum.small { width: 30px; height: 30px; font-size: .85rem; }
+.upcoming li.is-now { background: var(--soft); border-radius: 10px; padding: 8px 10px; }
+.verse { border-top: 1px solid var(--line); padding-top: 10px; margin-top: 12px; }
 
 .form { display: grid; gap: 10px; grid-template-columns: 1fr; margin: 10px 0; }
 .form label, .finder label { display: flex; flex-direction: column; gap: 4px; font-weight: 600; font-size: .95rem; }
