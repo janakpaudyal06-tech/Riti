@@ -201,3 +201,11 @@ h4 { margin: 1em 0 .3em; font-size: 1rem; }
   .pill { padding: 4px 9px; }
   .cell { min-height: 58px; }
 }
+
+/* Aarti */
+.aarti { padding: 18px 16px; }
+.lyrics { font-family: 'Noto Serif Devanagari', serif; font-size: 1.15rem; line-height: 1.85; margin: 0 0 12px; overflow-wrap: anywhere; }
+.lyrics[lang="hi-Latn"] { font-family: 'Mukta', system-ui, sans-serif; font-size: 1.05rem; }
+.lyrics.refrain { background: var(--mantra-bg); border-left: 4px solid var(--accent-2); border-radius: 10px; padding: 10px 14px; font-weight: 700; }
+.lyrics.echo { color: var(--accent); font-size: .95rem; margin-top: -6px; }
+.tabs button { min-width: 0; }

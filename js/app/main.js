@@ -4,9 +4,10 @@ const PALETTES = ['saffron', 'maroon', 'forest', 'indigo'];
 const TABS = [
   ['home', '📅', () => T('पात्रो', 'Calendar', 'पंचांग')],
   ['pujas', '🪔', () => T('पूजा', 'Pujas')],
+  ['aarti', '🔔', () => T('आरती', 'Aarti')],
   ['shraddha', '🕯️', () => T('श्राद्ध', 'Shraddha')]
 ];
-const VIEWS = { daily: dailyScreen, navaratri: navaratriScreen };
+const VIEWS = { daily: dailyScreen, navaratri: navaratriScreen, aarti: aartiView };
 
 function render() {
   const root = document.documentElement;
@@ -17,6 +18,7 @@ function render() {
   let html;
   if (S.view && VIEWS[S.view]) html = VIEWS[S.view]();
   else if (S.tab === 'pujas') html = pujasScreen();
+  else if (S.tab === 'aarti') html = aartiScreen();
   else if (S.tab === 'shraddha') html = shraddhaScreen();
   else html = homeScreen();
   document.getElementById('app').innerHTML = html;
@@ -50,6 +52,7 @@ document.addEventListener('click', e => {
     const [key, i] = ds.step.split(':');
     return go(() => { S.step[key] = Math.max(0, +i); stopSpeaking(); });
   }
+  if (ds.aarti) return go(() => { S.sub.aarti = ds.aarti; S.view = 'aarti'; stopSpeaking(); });
   if (ds.durga) return go(() => { S.step.durga = S.step.durga === +ds.durga ? -1 : +ds.durga; }, true);
   if (ds.day) return go(() => { S.day = ds.day; const bs = adToBs(...parseIso(ds.day)); if (bs) S.cal = { y: bs.y, m: bs.m }; });
   if (ds.speak) return speak(ds.speak);
