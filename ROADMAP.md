@@ -7,9 +7,11 @@ Each item is sized to be one piece of work (one branch / pull request).
 - [ ] **Pasni (annaprashan)** vidhi
 - [ ] **Bratabandha** vidhi
 - [ ] **Bibaha** vidhi
-- [ ] **BS 2084 sait** list once Nepal's calendar is published (`js/sait/sait-data.js`)
 - [ ] Confirm **BS 2084+ month lengths** against the official calendar (`js/calendar/bikram-sambat.js`)
-- [ ] **Navaratri Puja** vidhi
+- [ ] Check computed festival dates against Nepal's official BS 2083 patro and add a per-year override list if any differ
+- [x] **Navaratri Puja** vidhi (Navadurga)
+- [ ] **Laxmi Puja** (Tihar) and **Satyanarayan Puja** under Pujas → Other pujas
+- [ ] **Aarti and bhajan** book, **Vrata**, **Nwaran** and **Shubha sait** (from the earlier version; the code wasn't in the repo when the app was rebuilt)
 
 ## Ideas
 - [ ] Shraddha reminders (calendar file / .ics download for each ancestor's tithi)

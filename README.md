@@ -6,15 +6,13 @@ The app works in Nepali, Hindi and English, runs entirely in the browser, and ke
 
 ## What's in it
 
-- **Tithi Shraddha**: 20-step vidhi, mantras that fill in names and gotra automatically, materials checklist, rules
-- **Daily Puja**: full or 5-minute version
-- **Aarti and bhajan** book with read-aloud
-- **Vrata**: fasting days with background
-- **Nwaran**: naming ceremony, with a birth-letter (nakshatra) finder
-- **Tithi calendar (पात्रो)**: Bikram Sambat and AD, tithi at local sunrise, festivals, shraddha date finder
-- **Shubha sait**: published auspicious days for BS 2083
+The app has three tabs:
 
-Planned: Festivals guide, and more sanskars (Pasni, Bratabandha, Bibaha). See [ROADMAP.md](ROADMAP.md).
+- **Calendar (पात्रो)**, the home screen: today's Bikram Sambat and AD date, tithi at sunrise in your city with its end time, sunrise and sunset, a month calendar with the tithi on every day, festivals, and what's coming up
+- **Pujas**: Daily Puja (full or 5-minute) and Navaratri Puja (Ghatasthapana, the nine Navadurga with their dhyana shlokas, Phulpati, Ashtami/Navami, Dashami tika, and this year's dates). Laxmi Puja and Satyanarayan Puja are listed as coming soon
+- **Shraddha**: annual tithi shraddha date finder (the afternoon/aparahna rule), Sorha Shraddha date, finding the tithi from a date of death, a step-by-step vidhi whose sankalpa and tarpan fill in the gotra and names, and a materials list with rules
+
+Mantras can be shown in Roman letters and read aloud.
 
 ## Run it locally
 
@@ -38,12 +36,11 @@ Then open http://localhost:8000. (Opening `index.html` directly by double-clicki
 ```
 index.html              page shell; loads the CSS and scripts in order
 css/styles.css          all styles, light/dark themes, colour palettes
-js/core/                storage, helpers, read-aloud audio
-js/data/                shared ritual vocabulary (titles, months, tithis, weekdays)
+js/core/                state and storage, helpers (T(), transliteration), read-aloud
+js/data/vocabulary.js   month, tithi, paksha and weekday names
 js/i18n/hi.js           Hindi translations, keyed by the Nepali text
-js/guides/              Shraddha, Daily Puja, Nwaran, name finder, Aarti, Vrata
-js/calendar/            panchang engine, Bikram Sambat, places, festivals, calendar screens
-js/sait/                auspicious-day data and screens
+js/calendar/            panchang engine, Bikram Sambat, cities and festivals, Home screen
+js/guides/              content: Daily Puja, Navaratri, Shraddha
 js/app/                 screen rendering and the main event loop
 ```
 
