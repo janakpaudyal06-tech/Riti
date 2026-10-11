@@ -130,8 +130,12 @@ function chandiView() {
     <h2>${T('दुर्गा सप्तशती (चण्डी पाठ)', 'Durga Saptashati (Chandi Path)')}</h2>
     <p>${T('मार्कण्डेय पुराणको देवी माहात्म्य — ७०० श्लोक, १३ अध्याय, तीन चरित्रमा। नवरात्रमा यसको पाठ गर्नु सबैभन्दा ठूलो देवी उपासना मानिन्छ।',
       'The Devi Mahatmya of the Markandeya Purana — 700 verses in 13 chapters, in three episodes. Reciting it during Navaratri is considered the foremost worship of the Goddess.')}</p>
-    <p class="note">${T('पूरा पाठका लागि छापिएको दुर्गा सप्तशती पुस्तक (जस्तै गीता प्रेस) प्रयोग गर्नुहोस्। यहाँ पाठको क्रम, अध्यायको सार र सप्तश्लोकी दुर्गा छन्।',
-      'For the full path, use a printed Durga Saptashati (for example the Gita Press edition). Here you have the order of the path, what each chapter tells, and the Saptashloki Durga.')}</p>
+    <a class="ytlink pdflink" href="${esc(CHANDI_PDF_URL)}" target="_blank" rel="noopener noreferrer">
+      <span class="yticon" aria-hidden="true">📖</span>
+      <span><b>${T('पूरा चण्डी पाठ पढ्नुहोस् (नेपाली)', 'Read the full Chandi Path (Nepali)', 'पूरा चंडी पाठ पढ़ें (नेपाली)')}</b>
+      <span class="sub">${T('PDF Google Drive मा खुल्छ · ठूलो फाइल (९ MB)', 'Opens the PDF in Google Drive · large file (9 MB)', 'PDF Google Drive में खुलेगी · बड़ी फ़ाइल (9 MB)')}</span></span></a>
+    <p class="note">${T('तल पाठको क्रम, सात दिनको तालिका, अध्यायको सार र सप्तश्लोकी दुर्गा छन्।',
+      'Below: the order of the path, a seven-day plan, what each chapter tells, and the Saptashloki Durga.')}</p>
   </section>
   <section class="card"><h3>${T('पाठको क्रम', 'Order of the path')}</h3>
     <ol class="rules">${CHANDI_ORDER.map(o => `<li>${esc(TO(o))}</li>`).join('')}</ol></section>

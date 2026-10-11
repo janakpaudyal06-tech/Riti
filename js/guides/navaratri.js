@@ -123,8 +123,12 @@ const NAVADURGA_LIST_SHLOKA = 'प्रथमं शैलपुत्री �
 
 // ---------- Chandi Path (Durga Saptashati) ----------
 // The Devi Mahatmya of the Markandeya Purana: 700 verses in 13 chapters.
-// The full text is not bundled; this gives the structure, order, reading plan
-// and the Saptashloki Durga (the seven-verse short form taken from the Saptashati).
+// The full text lives in a PDF on Google Drive (CHANDI_PDF_URL); this file gives the
+// structure, order, reading plan and the Saptashloki Durga (the seven-verse short form).
+
+// Full Chandi with Nepali meaning, shared from the Riti folder on Google Drive.
+// The file must be shared as "Anyone with the link — Viewer" or people see a request-access page.
+const CHANDI_PDF_URL = 'https://drive.google.com/file/d/1-F5jV4aPHodySdjR_UtrsOchhv9CNQ6S/view';
 
 const CHANDI_CHARITRAS = [
   { ne: 'प्रथम चरित्र — महाकाली', en: 'First episode — Mahakali', hi: 'प्रथम चरित्र — महाकाली',
