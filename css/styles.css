@@ -216,3 +216,5 @@ h4 { margin: 1em 0 .3em; font-size: 1rem; }
 }
 .pdflink .yticon { background: var(--accent); }
 .yticon { width: 40px; height: 40px; flex: 0 0 auto; display: grid; place-items: center; border-radius: 10px; background: #e62117; color: #fff; font-size: 1.1rem; }
+
+.btn.wide { width: 100%; margin-top: 10px; }

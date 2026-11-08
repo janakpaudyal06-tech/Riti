@@ -32,6 +32,7 @@ function stepView(key, steps) {
     <p>${esc(TO(s.text))}</p>
     ${mantraBlock(mantra)}
     ${s.meaning ? `<p class="meaning"><b>${T('अर्थ', 'Meaning')}:</b> ${esc(TO(s.meaning))}</p>` : ''}
+    ${s.aarti ? `<button class="btn primary wide" data-aarti="${s.aarti}">🔔 ${T('आरती खोल्नुहोस्', 'Open the aarti')}</button>` : ''}
     <div class="stepnav">
       <button class="btn" data-step="${key}:${i - 1}" ${i === 0 ? 'disabled' : ''}>‹ ${T('अघिल्लो', 'Previous')}</button>
       <button class="btn primary" data-step="${key}:${i + 1}" ${i === n - 1 ? 'disabled' : ''}>${T('अर्को', 'Next')} ›</button>
@@ -68,7 +69,10 @@ function pujasScreen() {
       <span class="sub">${T('घटस्थापनादेखि दशमीको टीकासम्म', 'From Ghatasthapana to Dashami tika')}</span>
       ${ndText ? `<span class="sub accent">${ndText}</span>` : ''}</span></button>
     <h2 class="section">${T('अन्य पूजा', 'Other pujas')}</h2>
-    <div class="guide soon"><span class="gicon">🪙</span><span><b>${T('लक्ष्मी पूजा (तिहार)', 'Laxmi Puja (Tihar)')}</b><span class="sub">${T('छिट्टै आउँदैछ', 'Coming soon')}</span></span></div>
+    <button class="guide" data-go="laxmi">
+      <span class="gicon">🪙</span><span><b>${T('लक्ष्मी पूजा (तिहार)', 'Laxmi Puja (Tihar)')}</b>
+      <span class="sub">${T('कार्तिक औंसीको साँझ घरमा गर्ने पूजा', 'Evening puja at home on Kartik Aunsi')}</span>
+      ${laxmiDateLine()}</span></button>
     <div class="guide soon"><span class="gicon">🌼</span><span><b>${T('सत्यनारायण पूजा', 'Satyanarayan Puja')}</b><span class="sub">${T('छिट्टै आउँदैछ', 'Coming soon')}</span></span></div>`;
 }
 
@@ -272,6 +276,52 @@ function deathTithiInfo() {
     <p class="sub">${T('यो तिथि सकिने', 'This tithi ends')}: ${clock(p.ends, place.tz)}${dateIn(p.ends, place.tz).join() !== [y, m, d].join() ? ' ' + T('(भोलि)', '(next day)', '(अगले दिन)') : ''}. ${T('मृत्यु त्यसपछि भएको भए अर्को तिथि लिनुहोस्।', 'If death was after this time, use the next tithi.')}</p>
     <button class="btn primary" data-act="useDeathTithi" data-m="${p.month}" data-p="${p.paksha}" data-t="${tith}">${T('यो तिथि प्रयोग गर्नुहोस्', 'Use this tithi')}</button>
   </div>`;
+}
+
+// ---------- Laxmi Puja ----------
+
+// Laxmi Puja falls on Kartik Krishna Aunsi (tithi 30 of purnimanta Kartik).
+function nextLaxmiPuja() {
+  const [y, m, d] = todayHere();
+  return findLunarDates(y, m, d, 400, (p, prev) => lunarMatch(p, 7, 30) && !(prev && lunarMatch(prev, 7, 30)))[0];
+}
+
+function laxmiDateLine() {
+  const hit = nextLaxmiPuja();
+  if (!hit) return '';
+  const bs = adToBs(...hit);
+  const isToday = hit.join() === todayHere().join();
+  return `<span class="sub accent">${isToday ? T('आज', 'Today') + ' · ' : ''}${bs ? bsDateText(bs) + ' · ' : ''}${adDateText(...hit)}</span>`;
+}
+
+function laxmiScreen() {
+  const sub = curSub('laxmi', 'steps');
+  const hit = nextLaxmiPuja();
+  let when = '';
+  if (hit) {
+    const place = currentPlace();
+    const p = panchangFor(...hit, place);
+    const bs = adToBs(...hit);
+    const isToday = hit.join() === todayHere().join();
+    // Pradosh: about 2 hours 24 minutes (three muhurtas) after sunset.
+    const pradoshEnd = p.set + 144 * 60000;
+    when = `<section class="card today">
+      <div class="kicker">${isToday ? T('आज लक्ष्मी पूजा', 'Laxmi Puja is today') : T('आउँदो लक्ष्मी पूजा', 'Next Laxmi Puja')}</div>
+      <div class="bigdate">${bs ? bsDateText(bs) : ''}</div>
+      <div class="sub">${TO(WEEKDAYS[weekdayOf(...hit)])} · ${adDateText(...hit)}</div>
+      <p>${T('पूजा साँझ, सूर्यास्तपछिको प्रदोष कालमा गरिन्छ', 'The puja is done in the evening, in pradosh kaal after sunset', 'पूजा शाम को, सूर्यास्त के बाद प्रदोष काल में की जाती है')}:
+        <b>${clock(p.set, place.tz)} – ${clock(pradoshEnd, place.tz)}</b></p>
+      <div class="cityrow">${citySelect()}</div>
+      <p class="note">${T('ठ्याक्कै साइत नेपालको पात्रो वा पुरोहितसँग हेर्नुहोस्। मिति तपाईंको शहरको सूर्योदयको तिथिबाट निकालिएको हो।',
+        "Check Nepal's patro or your priest for the exact sait. The date uses the tithi at sunrise in your city.")}</p>
+    </section>`;
+  }
+  return `${backBar(T('लक्ष्मी पूजा', 'Laxmi Puja'))}
+    <p class="intro">${T('तिहारको तेस्रो दिन, कार्तिक कृष्ण औंसीमा, बिहान गाई पूजा र साँझ घरमा धन, सुख र समृद्धिकी देवी महालक्ष्मीको पूजा गरिन्छ। घरभरि दियो बालिन्छ।',
+      'On the third day of Tihar, Kartik Krishna Aunsi, the cow is worshipped in the morning, and in the evening Mahalakshmi, goddess of wealth and wellbeing, is worshipped at home. Lamps are lit all through the house.')}</p>
+    ${when}
+    ${subTabs('laxmi', [['steps', T('विधि', 'Steps')], ['materials', T('सामग्री', 'Materials')]])}
+    ${sub === 'materials' ? checklist('laxmi', LAXMI_MATERIALS) : stepView('laxmi', LAXMI_STEPS)}`;
 }
 
 // ---------- Aarti tab ----------
