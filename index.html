@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700&family=Noto+Serif+Devanagari:wght@500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/styles.css?v=20261108">
 </head>
 <body>
 <div class="band" aria-hidden="true"></div>
@@ -25,22 +25,23 @@
 <main id="app"></main>
 <nav class="tabs" id="tabs" aria-label="Sections"></nav>
 
-<!-- Scripts load in this order; later files use names defined in earlier ones. -->
-<script src="js/core/storage.js"></script>
-<script src="js/core/helpers.js"></script>
-<script src="js/data/vocabulary.js"></script>
-<script src="js/i18n/hi.js"></script>
-<script src="js/calendar/panchang-engine.js"></script>
-<script src="js/calendar/bikram-sambat.js"></script>
-<script src="js/calendar/places-festivals.js"></script>
-<script src="js/calendar/calendar-screen.js"></script>
-<script src="js/guides/daily-puja.js"></script>
-<script src="js/guides/navaratri.js"></script>
-<script src="js/guides/laxmi-puja.js"></script>
-<script src="js/guides/shraddha.js"></script>
-<script src="js/guides/aarti.js"></script>
-<script src="js/core/audio.js"></script>
-<script src="js/app/screens.js"></script>
-<script src="js/app/main.js"></script>
+<!-- Scripts load in this order; later files use names defined in earlier ones.
+     ?v= is a cache-buster: bump it (all tags together) whenever js/ or css/ changes. -->
+<script src="js/core/storage.js?v=20261108"></script>
+<script src="js/core/helpers.js?v=20261108"></script>
+<script src="js/data/vocabulary.js?v=20261108"></script>
+<script src="js/i18n/hi.js?v=20261108"></script>
+<script src="js/calendar/panchang-engine.js?v=20261108"></script>
+<script src="js/calendar/bikram-sambat.js?v=20261108"></script>
+<script src="js/calendar/places-festivals.js?v=20261108"></script>
+<script src="js/calendar/calendar-screen.js?v=20261108"></script>
+<script src="js/guides/daily-puja.js?v=20261108"></script>
+<script src="js/guides/navaratri.js?v=20261108"></script>
+<script src="js/guides/laxmi-puja.js?v=20261108"></script>
+<script src="js/guides/shraddha.js?v=20261108"></script>
+<script src="js/guides/aarti.js?v=20261108"></script>
+<script src="js/core/audio.js?v=20261108"></script>
+<script src="js/app/screens.js?v=20261108"></script>
+<script src="js/app/main.js?v=20261108"></script>
 </body>
 </html>
