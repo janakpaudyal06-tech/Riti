@@ -9,7 +9,7 @@ The app works in Nepali, Hindi and English, runs entirely in the browser, and ke
 The app has four tabs:
 
 - **Calendar (पात्रो)**, the home screen: today's Bikram Sambat and AD date, tithi at sunrise in your city with its end time, sunrise and sunset, a month calendar with the tithi on every day, festivals, and what's coming up
-- **Pujas**: Daily Puja (full or 5-minute) and Navaratri Puja (Ghatasthapana, the nine Navadurga, Chandi Path (order, 7-day plan, Saptashloki Durga) with their dhyana shlokas, Phulpati, Ashtami/Navami, Dashami tika, and this year's dates). Laxmi Puja (Gai puja, Laxmi's footprints, Ganesh then Laxmi puja with Mahalakshmi Ashtakam verse and Laxmi Gayatri, lamps, aarti, Bhailo; this year's date and evening pradosh time for your city). Satyanarayan Puja is listed as coming soon
+- **Pujas**: Daily Puja (full or 5-minute) and Navaratri Puja (Ghatasthapana, the nine Navadurga, Chandi Path (order, 7-day plan, Saptashloki Durga) with their dhyana shlokas, Phulpati, Ashtami/Navami, Dashami tika, and this year's dates). Laxmi Puja (Gai puja, Laxmi's footprints, Ganesh then Laxmi puja with Mahalakshmi Ashtakam verse and Laxmi Gayatri, lamps, aarti, Bhailo; this year's date and evening pradosh time for your city). Bhai Tika (puja of Yama, oil circle, walnut, seven-colour tika and makhamali, sagun, brother's tika for sister, what to do without a sibling or abroad; this year's date). Satyanarayan Puja is listed as coming soon
 - **Aarti**: Om Jai Jagdish Hare, Jai Ganesh Deva, Jai Ambe Gauri, Om Jai Lakshmi Mata, Om Jai Shiv Omkara and Aarti Kije Hanuman Lala Ki, with how to do aarti and Karpuragauram to close
 - **Shraddha**: annual tithi shraddha date finder (the afternoon/aparahna rule), Sorha Shraddha date, finding the tithi from a date of death, a step-by-step vidhi whose sankalpa and tarpan fill in the gotra and names, and a materials list with rules
 
@@ -41,7 +41,7 @@ js/core/                state and storage, helpers (T(), transliteration), read-
 js/data/vocabulary.js   month, tithi, paksha and weekday names
 js/i18n/hi.js           Hindi translations, keyed by the Nepali text
 js/calendar/            panchang engine, Bikram Sambat, cities and festivals, Home screen
-js/guides/              content: Daily Puja, Navaratri, Laxmi Puja, Shraddha, Aarti
+js/guides/              content: Daily Puja, Navaratri, Laxmi Puja, Bhai Tika, Shraddha, Aarti
 js/app/                 screen rendering and the main event loop
 ```
 

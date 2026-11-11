@@ -7,7 +7,7 @@ const TABS = [
   ['aarti', '🔔', () => T('आरती', 'Aarti')],
   ['shraddha', '🕯️', () => T('श्राद्ध', 'Shraddha')]
 ];
-const VIEWS = { daily: dailyScreen, navaratri: navaratriScreen, laxmi: laxmiScreen, aarti: aartiView };
+const VIEWS = { daily: dailyScreen, navaratri: navaratriScreen, laxmi: laxmiScreen, bhaitika: bhaiTikaScreen, aarti: aartiView };
 
 function render() {
   const root = document.documentElement;

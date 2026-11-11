@@ -32,6 +32,7 @@ function stepView(key, steps) {
     <p>${esc(TO(s.text))}</p>
     ${mantraBlock(mantra)}
     ${s.meaning ? `<p class="meaning"><b>${T('अर्थ', 'Meaning')}:</b> ${esc(TO(s.meaning))}</p>` : ''}
+    ${s.blessing ? `<div class="blessing"><div class="kicker">${T('प्रचलित भनाइ', 'Traditional words', 'प्रचलित कथन')}</div>${esc(TO(BHAI_BLESSING))}</div>` : ''}
     ${s.aarti ? `<button class="btn primary wide" data-aarti="${s.aarti}">🔔 ${T('आरती खोल्नुहोस्', 'Open the aarti')}</button>` : ''}
     <div class="stepnav">
       <button class="btn" data-step="${key}:${i - 1}" ${i === 0 ? 'disabled' : ''}>‹ ${T('अघिल्लो', 'Previous')}</button>
@@ -73,6 +74,10 @@ function pujasScreen() {
       <span class="gicon">🪙</span><span><b>${T('लक्ष्मी पूजा (तिहार)', 'Laxmi Puja (Tihar)')}</b>
       <span class="sub">${T('कार्तिक औंसीको साँझ घरमा गर्ने पूजा', 'Evening puja at home on Kartik Aunsi')}</span>
       ${laxmiDateLine()}</span></button>
+    <button class="guide" data-go="bhaitika">
+      <span class="gicon">🌸</span><span><b>${T('भाइटीका (तिहार)', 'Bhai Tika (Tihar)')}</b>
+      <span class="sub">${T('दिदीबहिनीले दाइभाइलाई टीका लगाउने दिन', 'Sisters give tika to their brothers')}</span>
+      ${festDateLine(nextLunarDay(7, 2))}</span></button>
     <div class="guide soon"><span class="gicon">🌼</span><span><b>${T('सत्यनारायण पूजा', 'Satyanarayan Puja')}</b><span class="sub">${T('छिट्टै आउँदैछ', 'Coming soon')}</span></span></div>`;
 }
 
@@ -281,13 +286,18 @@ function deathTithiInfo() {
 // ---------- Laxmi Puja ----------
 
 // Laxmi Puja falls on Kartik Krishna Aunsi (tithi 30 of purnimanta Kartik).
-function nextLaxmiPuja() {
+// Next day (from today) whose sunrise has this purnimanta month and tithi.
+function nextLunarDay(month, tithi) {
   const [y, m, d] = todayHere();
-  return findLunarDates(y, m, d, 400, (p, prev) => lunarMatch(p, 7, 30) && !(prev && lunarMatch(prev, 7, 30)))[0];
+  return findLunarDates(y, m, d, 400, (p, prev) => lunarMatch(p, month, tithi) && !(prev && lunarMatch(prev, month, tithi)))[0];
 }
 
-function laxmiDateLine() {
-  const hit = nextLaxmiPuja();
+function nextLaxmiPuja() { return nextLunarDay(7, 30); }
+
+function laxmiDateLine() { return festDateLine(nextLaxmiPuja()); }
+
+// "Today · 25 Kartik 2083 · 11 Nov 2026" line for a guide card.
+function festDateLine(hit) {
   if (!hit) return '';
   const bs = adToBs(...hit);
   const isToday = hit.join() === todayHere().join();
@@ -322,6 +332,32 @@ function laxmiScreen() {
     ${when}
     ${subTabs('laxmi', [['steps', T('विधि', 'Steps')], ['materials', T('सामग्री', 'Materials')]])}
     ${sub === 'materials' ? checklist('laxmi', LAXMI_MATERIALS) : stepView('laxmi', LAXMI_STEPS)}`;
+}
+
+// ---------- Bhai Tika ----------
+
+function bhaiTikaScreen() {
+  const sub = curSub('bhai', 'steps');
+  const hit = nextLunarDay(7, 2);
+  let when = '';
+  if (hit) {
+    const bs = adToBs(...hit);
+    const isToday = hit.join() === todayHere().join();
+    when = `<section class="card today">
+      <div class="kicker">${isToday ? T('आज भाइटीका', 'Bhai Tika is today') : T('आउँदो भाइटीका', 'Next Bhai Tika')}</div>
+      <div class="bigdate">${bs ? bsDateText(bs) : ''}</div>
+      <div class="sub">${TO(WEEKDAYS[weekdayOf(...hit)])} · ${adDateText(...hit)}</div>
+      <div class="cityrow">${citySelect()}</div>
+      <p class="note">${T('नेपालमा भाइटीकाको साइत पात्रोमा छापिन्छ वा नेपाल पञ्चाङ्ग निर्णायक समितिले घोषणा गर्छ; विदेशमा परिवारको सुविधाअनुसार दिउँसो गर्न सकिन्छ। मिति तपाईंको शहरको सूर्योदयको तिथिबाट निकालिएको हो।',
+        "In Nepal the tika sait is printed in the patro or announced by the Nepal Panchang committee; abroad, families do it at a convenient time during the day. The date uses the tithi at sunrise in your city.")}</p>
+    </section>`;
+  }
+  return `${backBar(T('भाइटीका', 'Bhai Tika'))}
+    <p class="intro">${T('तिहारको पाँचौं दिन, कार्तिक शुक्ल द्वितीया (यमद्वितीया) मा, यमुनाले आफ्ना दाइ यमराजलाई टीका लगाएको सम्झनामा दिदीबहिनीले दाइभाइको दीर्घायुका लागि पूजा गरी टीका लगाउँछन्।',
+      'On the fifth day of Tihar, Kartik Shukla Dwitiya (Yama Dwitiya), remembering how Yamuna gave tika to her brother Yamaraj, sisters worship and give tika to their brothers for a long life.')}</p>
+    ${when}
+    ${subTabs('bhai', [['steps', T('विधि', 'Steps')], ['materials', T('सामग्री', 'Materials')]])}
+    ${sub === 'materials' ? checklist('bhai', BHAI_MATERIALS) : stepView('bhai', BHAI_STEPS)}`;
 }
 
 // ---------- Aarti tab ----------
